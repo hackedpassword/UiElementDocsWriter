@@ -78,12 +78,12 @@ def search_and_flatten_in_tree(root_dir, target_strings, file_extension=".kt"):
                 
                 # Search for target strings in flattened code
                 for line in flattened_code.split('\n'):
-			# Replace commas within colorFromRGB() with '|' to deal with later parsing
-			line = replace_colorFromRGB_commas(line)
+                    # Replace commas within colorFromRGB() with '|' to deal with later parsing
+                    line = replace_colorFromRGB_commas(line)
 
                     if any(target_string in line for target_string in target_strings):
-			if line.strip().startswith(("//", "/*", "*", "*/"), "import", "else", "private fun"): 	# Skip lines that start with comments, imports, else statements, function decs
-				continue
+                        if line.strip().startswith(("//", "/*", "*", "*/", "import", "else", "private fun")): 	# Skip lines that start with comments, imports, else statements, function decs
+                            continue
 
                         print(f"{line}")
 #                        print(f"File: {file_path}\nLine: {line}\n")
